@@ -14,13 +14,63 @@ import {
   Zap,
 } from "lucide-react";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const openProject = (project: Project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    // Validação básica
+    if (!formData.name || !formData.email || !formData.message) {
+      alert('Por favor, preencha todos os campos!');
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Criar mailto link com os dados do formulário
+    const subject = encodeURIComponent(`Contato de ${formData.name} - Portfolio`);
+    const body = encodeURIComponent(
+      `Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`
+    );
+    const mailtoLink = `mailto:vinicius.adsbusiness@gmail.com?subject=${subject}&body=${body}`;
+
+    // Abrir cliente de e-mail
+    window.location.href = mailtoLink;
+
+    // Limpar formulário após 1 segundo
+    setTimeout(() => {
+      setFormData({ name: '', email: '', message: '' });
+      setIsSubmitting(false);
+      setSubmitStatus('success');
+      
+      // Resetar status após 3 segundos
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    }, 1000);
   };
 
   return (
@@ -70,7 +120,7 @@ function App() {
           </div>
           <div className="hidden lg:flex lg:absolute lg:right-80 lg:left-90 lg:top-1/2 lg:-translate-y-1/2">
             <img
-              src="/foto_perfil.jpeg"
+              src={`${BASE_URL}foto_perfil.jpeg`}
               alt="Foto de perfil"
               className="w-120 h-96 rounded-full object-cover shadow-2xl border-6 border-white"
             />
@@ -127,7 +177,7 @@ function App() {
                   <Linkedin size={24} />
                 </a>
                 <a
-                  href="/ViniciusAlves-FullStack.pdf"
+                  href={`${BASE_URL}ViniciusAlves-FullStack.pdf`}
                   download="ViniciusAlves-FullStack.pdf"
                   className="flex items-center gap-2 px-4 py-3 text-slate-700 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors font-medium text-sm"
                 >
@@ -343,9 +393,16 @@ function App() {
 
             <form
               className="bg-white rounded-2xl p-8 text-slate-800 shadow-2xl"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <h3 className="text-2xl font-bold mb-6">Envie uma mensagem</h3>
+              
+              {submitStatus === 'success' && (
+                <div className="mb-4 p-4 bg-green-50 border border-green-200 text-green-800 rounded-lg">
+                  ✓ Mensagem enviada com sucesso!
+                </div>
+              )}
+
               <div className="space-y-4">
                 <div>
                   <label
@@ -357,6 +414,9 @@ function App() {
                   <input
                     type="text"
                     id="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
                     placeholder="Seu nome"
                   />
@@ -371,6 +431,9 @@ function App() {
                   <input
                     type="email"
                     id="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
                     placeholder="voce@empresa.com"
                   />
@@ -385,15 +448,19 @@ function App() {
                   <textarea
                     id="message"
                     rows={4}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all resize-none"
                     placeholder="Descreva brevemente seu projeto..."
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 bg-primary-600 text-white rounded-lg font-bold text-lg hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/20"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-primary-600 text-white rounded-lg font-bold text-lg hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Enviar Mensagem
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                 </button>
               </div>
             </form>

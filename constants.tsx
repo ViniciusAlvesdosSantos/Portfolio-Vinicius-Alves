@@ -9,6 +9,8 @@ import {
   CheckCircle2 
 } from 'lucide-react';
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Sobre', href: '#sobre' },
   { label: 'Skills', href: '#skills' },
@@ -33,14 +35,14 @@ export const PROJECTS: Project[] = [
     shortDescription: 'Site institucional sóbrio e autoritário para escritório de advocacia.',
     fullDescription: 'Desenvolvimento completo de um portal institucional para um escritório de advocacia renomado. O objetivo era transmitir autoridade, confiança e facilitar o contato de novos clientes através de uma arquitetura de informação clara.',
     tags: ['React', 'Tailwind', 'Framer Motion'],
-    imageUrl: '/PrintsAdvocacia-Site/adv1.png',
+    imageUrl: `${BASE_URL}PrintsAdvocacia-Site/adv1.png`,
     gallery: [
-      '/PrintsAdvocacia-Site/adv1.png',
-      '/PrintsAdvocacia-Site/adv2.png',
-      '/PrintsAdvocacia-Site/adv3.png',
-      '/PrintsAdvocacia-Site/adv4.png',
-      '/PrintsAdvocacia-Site/adv5.png',
-      '/PrintsAdvocacia-Site/adv6.png',
+      `${BASE_URL}PrintsAdvocacia-Site/adv1.png`,
+      `${BASE_URL}PrintsAdvocacia-Site/adv2.png`,
+      `${BASE_URL}PrintsAdvocacia-Site/adv3.png`,
+      `${BASE_URL}PrintsAdvocacia-Site/adv4.png`,
+      `${BASE_URL}PrintsAdvocacia-Site/adv5.png`,
+      `${BASE_URL}PrintsAdvocacia-Site/adv6.png`,
     ],
     structure: [
       'Hero com proposta de valor clara',
@@ -64,13 +66,13 @@ export const PROJECTS: Project[] = [
     shortDescription: 'Plataforma profissional para escritório de advocacia corporativa.',
     fullDescription: 'Site responsivo focado em transmitir profissionalismo e expertise jurídica, com design moderno e navegação intuitiva.',
     tags: ['TypeScript', 'React', 'CSS Modules'],
-    imageUrl: '/PrintsLawFirm/ADV1.png',
+    imageUrl: `${BASE_URL}PrintsLawFirm/ADV1.png`,
     gallery: [
-      '/PrintsLawFirm/ADV1.png',
-      '/PrintsLawFirm/ADV2.png',
-      '/PrintsLawFirm/ADV3.png',
-      '/PrintsLawFirm/ADV4.png',
-      '/PrintsLawFirm/AVD5.png',
+      `${BASE_URL}PrintsLawFirm/ADV1.png`,
+      `${BASE_URL}PrintsLawFirm/ADV2.png`,
+      `${BASE_URL}PrintsLawFirm/ADV3.png`,
+      `${BASE_URL}PrintsLawFirm/ADV4.png`,
+      `${BASE_URL}PrintsLawFirm/AVD5.png`,
     ],
     structure: [
       'Busca por especialidade',
@@ -93,14 +95,14 @@ export const PROJECTS: Project[] = [
     shortDescription: 'Website médico moderno com chatbot IA 24/7 e design acolhedor.',
     fullDescription: 'O Problema: Clínicas perdem pacientes por falta de atendimento fora do horário comercial e sites médicos frios que não transmitem confiança. Minha Solução: Website moderno com chatbot IA 24/7 (Google Gemini), design empático que reduz ansiedade e múltiplos caminhos para agendamento. Resultado: Atendimento automatizado 24h, redução de 40% na sobrecarga da recepção e aumento de 35% nas conversões.',
     tags: ['React', 'TypeScript', 'Design Responsivo', 'Tailwind'],
-    imageUrl: '/Prints-Clinica-Vida/cli1.png',
+    imageUrl: `${BASE_URL}Prints-Clinica-Vida/cli1.png`,
     gallery: [
-      '/Prints-Clinica-Vida/cli1.png',
-      '/Prints-Clinica-Vida/cli2.png',
-      '/Prints-Clinica-Vida/cli3.png',
-      '/Prints-Clinica-Vida/cli4.png',
-      '/Prints-Clinica-Vida/cli5.png',
-      '/Prints-Clinica-Vida/cli6.png',
+      `${BASE_URL}Prints-Clinica-Vida/cli1.png`,
+      `${BASE_URL}Prints-Clinica-Vida/cli2.png`,
+      `${BASE_URL}Prints-Clinica-Vida/cli3.png`,
+      `${BASE_URL}Prints-Clinica-Vida/cli4.png`,
+      `${BASE_URL}Prints-Clinica-Vida/cli5.png`,
+      `${BASE_URL}Prints-Clinica-Vida/cli6.png`,
     ],
     structure: [
       'Design acolhedor e empático que reduz ansiedade',
