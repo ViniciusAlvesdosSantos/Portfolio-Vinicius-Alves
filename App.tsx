@@ -70,7 +70,7 @@ function App() {
           </div>
           <div className="hidden lg:flex lg:absolute lg:right-80 lg:left-90 lg:top-1/2 lg:-translate-y-1/2">
             <img
-              src="./components/images/foto_perfil.jpeg"
+              src="/foto_perfil.jpeg"
               alt="Foto de perfil"
               className="w-120 h-96 rounded-full object-cover shadow-2xl border-6 border-white"
             />
@@ -127,7 +127,7 @@ function App() {
                   <Linkedin size={24} />
                 </a>
                 <a
-                  href="./components/images/ViniciusAlves-FullStack.pdf"
+                  href="/ViniciusAlves-FullStack.pdf"
                   download="ViniciusAlves-FullStack.pdf"
                   className="flex items-center gap-2 px-4 py-3 text-slate-700 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors font-medium text-sm"
                 >
